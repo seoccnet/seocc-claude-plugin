@@ -8,10 +8,12 @@
     "email": "sales@seocc.net",
     "url": "https://github.com/seoccnet"
   },
-  "homepage": "https://github.com/seoccnet/seocc-claude-plugin",
+  "homepage": "https://seocc.net",
   "repository": "https://github.com/seoccnet/seocc-claude-plugin",
+  "documentationUrl": "https://github.com/seoccnet/seo-control-center#documentation",
   "supportUrl": "https://github.com/seoccnet/seocc-claude-plugin/issues",
   "privacyPolicyUrl": "https://github.com/seoccnet/seocc-claude-plugin/blob/main/PRIVACY.md",
+  "termsOfServiceUrl": "https://seocc.net/terms",
   "license": "MIT",
   "icon": "./assets/icon.svg",
   "keywords": [
