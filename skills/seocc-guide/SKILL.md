@@ -21,7 +21,7 @@ SEOcc is the user's own SEO platform, installed on their own hosting. It stores 
 4. **SEOcc's MCP never spends money or calls providers.** No tool refreshes Google, starts a crawl or buys a DataForSEO lookup. Data can be stale, so say when it was last imported (`data_quality` tells you). Paid lookups and crawls are started by the user in the dashboard.
 5. **Be frugal.** Use small `limit` values and page with `offset` / `next_offset`. Results are capped at 40 KB and say when they were cut. The server allows 60 calls a minute per token and 20 writes a minute.
 6. **Ask before every write.** See "Writes" below.
-7. **No secrets in chat.** Never ask for, repeat or store an SEOcc token, password, API key or 2FA code. The user signs in with OAuth or adds a token in their own settings.
+7. **No secrets in chat.** Never ask for, repeat or store an SEOcc token, password, API key or 2FA code. The user connects SEOcc themselves (see the `connect` skill).
 
 ## Writes
 

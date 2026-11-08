@@ -36,23 +36,17 @@ The server address is the installation address plus `/mcp`, for example `https:/
 
 To change scopes later, the user revokes the access in SEOcc under **Integrations → AI access** and connects again.
 
-## With a token (fallback)
+## Limiting access to some projects
 
-Where OAuth sign-in isn't possible, or to limit access to some projects, an owner or admin can create a token in SEOcc under **Integrations → AI access → New token** (choose projects, scopes and expiry; it starts with `scc_` and is shown once) and add it themselves:
-
-```bash
-claude mcp add --transport http seocc https://seo.example.com/mcp --header "Authorization: Bearer YOUR_TOKEN"
-```
-
-The user types this in their own terminal. Don't run it with a real token for them, and don't repeat the token.
+OAuth access covers the whole workspace. To limit Claude to some projects, or where a browser sign-in isn't possible, an owner or admin creates access in SEOcc under **Integrations → AI access → New token** (projects, scopes and expiry). SEOcc then shows the exact setup command for Claude Code; the user copies it into their own terminal. You never handle that value: don't ask for it, run it or repeat it.
 
 ## Troubleshooting
 
 | Symptom | Likely cause and fix |
 |---|---|
 | Sign-in page doesn't open or fails | Check that `https://<address>/.well-known/oauth-authorization-server` loads. If not, the SEOcc address or its HTTPS setup is wrong. |
-| 401 or "invalid token" | Access expired or was revoked. Authenticate again in `/mcp` (or create a new token). |
+| 401 or "invalid token" | Access expired or was revoked. Authenticate again in `/mcp`, or create new access in SEOcc. |
 | Connects but a tool is missing | The access lacks that scope. Revoke it in SEOcc and connect again with the scope ticked. |
 | "Project not found" | The access doesn't include that project, or the user lost access to it. |
-| Empty, garbled or HTML response | Hosting strips the `Authorization` header, or security software or a web filter rewrites `/mcp` responses. Test from another network, and see the *Troubleshooting* chapter (`guide_search "troubleshooting"` once connected, or the SEOcc docs). |
+| Empty, garbled or HTML response | Hosting drops the sign-in header on `/mcp` requests, or security software or a web filter rewrites `/mcp` responses. Test from another network, and see the *Troubleshooting* chapter (`guide_search "troubleshooting"` once connected, or the SEOcc docs). |
 | "Too many requests" | 60 calls a minute per connection. Wait a minute; don't retry in a loop. |

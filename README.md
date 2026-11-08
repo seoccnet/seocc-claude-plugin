@@ -48,7 +48,7 @@ Every SEOcc installation has its own address, so the plugin ships the skills and
    SEOcc opens its consent page. Sign in, pick the workspace and the data Claude may read. Write access (change notes, tasks, briefs and more) is listed separately and unticked. Click **Allow**.
 3. Ask Claude: "List my SEOcc projects."
 
-To limit Claude to some projects, or where a browser sign-in isn't possible, create a token in SEOcc under **Integrations → AI access → New token** and add it with `--header "Authorization: Bearer YOUR_TOKEN"` instead. The `/seocc:connect` skill walks you through both ways and through troubleshooting.
+To limit Claude to some projects, or where a browser sign-in isn't possible, create access in SEOcc under **Integrations → AI access → New token** and run the setup command SEOcc shows you. The `/seocc:connect` skill walks you through setup and troubleshooting.
 
 ## What the plugin does and doesn't do
 
