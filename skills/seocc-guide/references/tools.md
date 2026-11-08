@@ -2,7 +2,7 @@
 
 A token only lists and allows the tools its scopes cover. Read scopes cover stored data. Write scopes are opt-in and never delete or spend money. Every project tool takes `project_id`.
 
-If a tool is missing, ask the user to create a new token with the scope (SEOcc: **Integrations → AI access → New token**). Existing tokens never gain scopes.
+If a tool is missing, the connection lacks the scope. The user revokes it in SEOcc (**Integrations → AI access**) and connects again with the scope ticked; existing access never gains scopes.
 
 ## Read scopes
 

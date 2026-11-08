@@ -5,7 +5,7 @@ description: Ground rules for using SEOcc (SEO Control Center), the free self-ho
 
 # Using SEOcc well
 
-SEOcc is the user's own SEO platform, installed on their own hosting. It stores Google Search Console, Bing, GA4, rank tracking, competitor, backlink, AI-visibility, local and site-audit data for one or more **projects** (one project = one website). You reach it through its MCP server. In Claude Code that server is called `seocc`; in claude.ai or Cowork it is whatever name the user gave the custom connector. The tool names below are the same everywhere.
+SEOcc is the user's own SEO platform, installed on their own hosting. It stores Google Search Console, Bing, GA4, rank tracking, competitor, backlink, AI-visibility, local and site-audit data for one or more **projects** (one project = one website). You reach it through its MCP server, which the user connects once (see the `connect` skill). The server's name in Claude is whatever the user chose (usually `seocc`); the tool names below are the same everywhere.
 
 ## First call, every time
 
@@ -21,11 +21,11 @@ SEOcc is the user's own SEO platform, installed on their own hosting. It stores 
 4. **SEOcc's MCP never spends money or calls providers.** No tool refreshes Google, starts a crawl or buys a DataForSEO lookup. Data can be stale, so say when it was last imported (`data_quality` tells you). Paid lookups and crawls are started by the user in the dashboard.
 5. **Be frugal.** Use small `limit` values and page with `offset` / `next_offset`. Results are capped at 40 KB and say when they were cut. The server allows 60 calls a minute per token and 20 writes a minute.
 6. **Ask before every write.** See "Writes" below.
-7. **No secrets in chat.** Never ask for, repeat or store an SEOcc token, password, API key or 2FA code. Tokens go only into the plugin or connector settings.
+7. **No secrets in chat.** Never ask for, repeat or store an SEOcc token, password, API key or 2FA code. The user signs in with OAuth or adds a token in their own settings.
 
 ## Writes
 
-Some tokens have write scopes (`annotations:write`, `tasks:write`, `briefs:write`, `opportunities:write`, `watches:write`, `keywords:write`, `clusters:write`, `investigations:write`). They're off unless the user ticked them. Writes never delete anything and never spend money, but they change what the user's team sees. So:
+A connection can have write scopes (`annotations:write`, `tasks:write`, `briefs:write`, `opportunities:write`, `watches:write`, `keywords:write`, `clusters:write`, `investigations:write`). They're off unless the user ticked them. Writes never delete anything and never spend money, but they change what the user's team sees. So:
 
 - Show the exact values you'll write and get a clear **yes** first, every time. One approval covers only what you showed.
 - Pass a fresh `client_request_id` (8–64 characters) so a retry can't create a duplicate.

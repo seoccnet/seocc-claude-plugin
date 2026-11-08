@@ -5,49 +5,54 @@ description: Connect Claude to the user's own SEOcc (SEO Control Center) install
 
 # Connect SEOcc
 
-Check first: call `projects_list`. If it answers, SEOcc is connected. Say which projects the token sees and stop.
+Check first: call `projects_list`. If it answers, SEOcc is connected. Say which projects it sees and stop.
 
-Never ask the user to paste a token into the chat. It goes only into the plugin's or connector's settings.
+The plugin doesn't contain a server address, because every SEOcc installation has its own. The user connects their installation once, as an MCP server, and signs in with OAuth. Never ask the user to paste a password or token into the chat.
 
-## 1. Create a token in SEOcc
+The server address is the installation address plus `/mcp`, for example `https://seo.example.com/mcp`. It must use HTTPS.
 
-The user (a workspace owner or admin) opens SEOcc, goes to **Integrations → AI access → New token**, and chooses:
+## Claude Code
 
-- **Projects**: only the sites Claude should see.
-- **Read scopes**: Projects, Search Console performance, Keywords and metrics, Rankings, Competitors, Opportunities, Pages and their SEO evidence. Most skills need **Pages** (`pages:read`) for URL-level work.
-- **Write scopes** (optional, unticked by default): change notes, team tasks, content briefs, opportunity status, page watches, keyword relevance, topic owners, investigations. Leave them off for read-only use.
-- **Expiry**.
+1. The user runs this in a terminal, with their own address:
 
-The token starts with `scc_` and is shown once.
+   ```bash
+   claude mcp add --transport http seocc https://seo.example.com/mcp
+   ```
 
-## 2. Add it to Claude
+   Add `--scope user` to use it in every project, not only the current folder.
+2. In Claude Code, run `/mcp`, select `seocc` and choose **Authenticate**. A browser opens on SEOcc.
+3. On SEOcc's consent page the user signs in, picks the workspace and the scopes, and clicks **Allow**. Only workspace owners and admins can approve. The access covers every project in that workspace the user can see; to limit Claude to some projects, use a token instead (see the fallback below).
 
-**Claude Code (this plugin):** when the plugin is enabled, Claude Code asks for two settings:
-
-- **SEOcc MCP address**: the installation address plus `/mcp`, such as `https://seo.example.com/mcp`. HTTPS is required.
-- **SEOcc MCP token**: the `scc_…` token. It's stored in secure storage, not in `settings.json`.
-
-To change them later, the user opens `/plugin`, selects the `seocc` plugin, and edits its options. Then run `/mcp` to reconnect.
-
-**Claude.ai, the Claude desktop chat, or Cowork:** these don't prompt for plugin settings, so the plugin's built-in server stays off there. Its skills still work once SEOcc is added as a custom connector:
+## Claude.ai, the Claude desktop chat, or Cowork
 
 1. **Settings → Connectors → Add custom connector**.
 2. URL: the installation address plus `/mcp`.
-3. Sign in with **OAuth**: SEOcc opens, the user signs in, picks the workspace, projects and scopes, and clicks **Allow**. Only owners and admins can approve.
+3. Connect, then sign in and approve on SEOcc's consent page as above.
 
-**Without the plugin (Claude Code):**
+## Which scopes to approve
+
+- **Read**: Projects, Search Console performance, Keywords and metrics, Rankings, Competitors, Opportunities, Pages and their SEO evidence. Most skills need **Pages** (`pages:read`) for URL-level work.
+- **Write** (optional, unticked by default): change notes, team tasks, content briefs, opportunity status, page watches, keyword relevance, topic owners, investigations. Leave them off for read-only use.
+
+To change scopes later, the user revokes the access in SEOcc under **Integrations → AI access** and connects again.
+
+## With a token (fallback)
+
+Where OAuth sign-in isn't possible, or to limit access to some projects, an owner or admin can create a token in SEOcc under **Integrations → AI access → New token** (choose projects, scopes and expiry; it starts with `scc_` and is shown once) and add it themselves:
 
 ```bash
 claude mcp add --transport http seocc https://seo.example.com/mcp --header "Authorization: Bearer YOUR_TOKEN"
 ```
 
-## 3. Troubleshooting
+The user types this in their own terminal. Don't run it with a real token for them, and don't repeat the token.
+
+## Troubleshooting
 
 | Symptom | Likely cause and fix |
 |---|---|
-| 401 or "invalid token" | Token expired, revoked, or mistyped. Create a new one. |
-| Connects but a tool is missing | The token lacks that scope. Create a new token with it; existing tokens never gain scopes. |
-| "Project not found" | The token doesn't include that project, or the user lost access to it. |
+| Sign-in page doesn't open or fails | Check that `https://<address>/.well-known/oauth-authorization-server` loads. If not, the SEOcc address or its HTTPS setup is wrong. |
+| 401 or "invalid token" | Access expired or was revoked. Authenticate again in `/mcp` (or create a new token). |
+| Connects but a tool is missing | The access lacks that scope. Revoke it in SEOcc and connect again with the scope ticked. |
+| "Project not found" | The access doesn't include that project, or the user lost access to it. |
 | Empty, garbled or HTML response | Hosting strips the `Authorization` header, or security software or a web filter rewrites `/mcp` responses. Test from another network, and see the *Troubleshooting* chapter (`guide_search "troubleshooting"` once connected, or the SEOcc docs). |
-| "Too many requests" | 60 calls a minute per token. Wait a minute; don't retry in a loop. |
-| `http://` address refused | Use HTTPS. Claude won't send a token to a plain-HTTP remote server. |
+| "Too many requests" | 60 calls a minute per connection. Wait a minute; don't retry in a loop. |

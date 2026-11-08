@@ -4,6 +4,6 @@
 
 First release.
 
-- MCP server entry for your own SEOcc installation; Claude Code asks for the `/mcp` address and the token (stored as a sensitive value).
 - Skills: `seocc-guide`, `connect`, `fix-first`, `search-performance`, `opportunities`, `article-ideas`, `site-audit`, `content-brief`, `change-timeline`.
+- You connect your own SEOcc installation once as an MCP server and sign in with OAuth (or a token); the plugin holds no address or credentials.
 - Covers SEOcc 1.1 MCP tools, including the opt-in write scopes, with an ask-before-every-write rule.
