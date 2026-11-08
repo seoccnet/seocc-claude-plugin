@@ -27,7 +27,7 @@ Record only changes that are **live**, never planned ones. One note per logical 
 | `url` | The exact page on the project domain; blank for a site-wide change. |
 | `note` | ≤2,000 characters: old → new, why, and when to review. No secrets or private data. |
 
-Call `annotation_create` with a fresh `client_request_id`. With a `url`, SEOcc also drafts a measurement plan and freezes its baseline (pass `measure: false` to skip). Fix a mistake with `annotation_update` and `expected_version`; don't add a duplicate. Without the scope, give the user the values for the **Change timeline** page.
+Call `annotation_create` with a fresh `client_request_id`. With a `url`, SEOcc also drafts a measurement plan and freezes its baseline; set `measure` to false to skip that. Fix a mistake with `annotation_update` and `expected_version`; don't add a duplicate. Without the scope, give the user the values for the **Change timeline** page.
 
 For a batch of fixes, prepare a table of all notes, get approval, then create them one by one and check each result.
 

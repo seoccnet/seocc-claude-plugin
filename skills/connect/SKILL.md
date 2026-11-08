@@ -9,14 +9,14 @@ Check first: call `projects_list`. If it answers, SEOcc is connected. Say which 
 
 The plugin doesn't contain a server address, because every SEOcc installation has its own. The user connects their installation once, as an MCP server, and signs in with OAuth. Never ask the user to paste a password or token into the chat.
 
-The server address is the installation address plus `/mcp`, for example `https://seo.example.com/mcp`. It must use HTTPS.
+The server address is the installation address plus `/mcp`, for example `https://YOUR-SEOCC-ADDRESS/mcp`. It must use HTTPS.
 
 ## Claude Code
 
 1. The user runs this in a terminal, with their own address:
 
    ```bash
-   claude mcp add --transport http seocc https://seo.example.com/mcp
+   claude mcp add --transport http seocc https://YOUR-SEOCC-ADDRESS/mcp
    ```
 
    Add `--scope user` to use it in every project, not only the current folder.

@@ -27,7 +27,7 @@ You can also just ask, for example "What should I fix first on my tomato seed sh
 
 ## Setup
 
-Every SEOcc installation has its own address, so the plugin ships the skills and you connect your installation once. Your SEOcc MCP address is your installation address plus `/mcp`, such as `https://seo.example.com/mcp`.
+Every SEOcc installation has its own address, so the plugin ships the skills and you connect your installation once. Your SEOcc MCP address is your installation address plus `/mcp`, such as `https://YOUR-SEOCC-ADDRESS/mcp`.
 
 1. Install the plugin.
    - **Claude Code:**
@@ -41,7 +41,7 @@ Every SEOcc installation has its own address, so the plugin ships the skills and
 2. Connect SEOcc and sign in with OAuth.
    - **Claude Code:** add the server with your own address, then run `/mcp` in Claude Code, pick `seocc` and choose **Authenticate**.
      ```bash
-     claude mcp add --transport http --scope user seocc https://seo.example.com/mcp
+     claude mcp add --transport http --scope user seocc https://YOUR-SEOCC-ADDRESS/mcp
      ```
    - **Claude.ai, Claude desktop or Cowork:** **Settings → Connectors → Add custom connector** with your `/mcp` address, then connect.
 
