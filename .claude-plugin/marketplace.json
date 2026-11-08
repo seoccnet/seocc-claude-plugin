@@ -1,0 +1,17 @@
+{
+  "name": "seocc",
+  "metadata": {
+    "description": "The SEOcc plugin for Claude: use your self-hosted SEOcc (SEO Control Center) installation from Claude."
+  },
+  "owner": {
+    "name": "SEOcc",
+    "email": "sales@seocc.net"
+  },
+  "plugins": [
+    {
+      "name": "seocc",
+      "source": "./",
+      "description": "Work with your own self-hosted SEOcc installation: fixes, search performance, opportunities, article ideas, site audit, content briefs and the change timeline."
+    }
+  ]
+}

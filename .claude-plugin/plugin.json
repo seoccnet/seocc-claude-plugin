@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "seocc",
+  "displayName": "SEOcc",
+  "version": "1.0.0",
+  "description": "Work with your own self-hosted SEOcc (SEO Control Center) installation: what to fix first, search performance, opportunities, article ideas, the site audit, content briefs and the SEO change timeline, read and written through SEOcc's MCP server.",
+  "author": {
+    "name": "SEOcc",
+    "email": "sales@seocc.net",
+    "url": "https://github.com/seoccnet"
+  },
+  "homepage": "https://github.com/seoccnet/seocc-claude-plugin",
+  "repository": "https://github.com/seoccnet/seocc-claude-plugin",
+  "documentationUrl": "https://github.com/seoccnet/seocc-claude-plugin#readme",
+  "supportUrl": "https://github.com/seoccnet/seocc-claude-plugin/issues",
+  "privacyPolicyUrl": "https://github.com/seoccnet/seocc-claude-plugin/blob/main/PRIVACY.md",
+  "license": "MIT",
+  "icon": "./assets/icon.svg",
+  "keywords": [
+    "seo",
+    "seocc",
+    "search-console",
+    "site-audit",
+    "rank-tracking",
+    "content-briefs",
+    "self-hosted",
+    "mcp"
+  ],
+  "userConfig": {
+    "seocc_mcp_url": {
+      "type": "string",
+      "title": "SEOcc MCP address",
+      "description": "Your SEOcc installation's address followed by /mcp, for example https://seo.example.com/mcp. It must start with https://.",
+      "required": true
+    },
+    "seocc_token": {
+      "type": "string",
+      "title": "SEOcc MCP token",
+      "description": "A token you create in SEOcc under Integrations > AI access > New token (it starts with scc_ and is shown once). Tick only the scopes and projects you want Claude to use.",
+      "required": true,
+      "sensitive": true
+    }
+  }
+}
