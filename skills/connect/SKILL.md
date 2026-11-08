@@ -21,7 +21,7 @@ The server address is the installation address plus `/mcp`, for example `https:/
 
    Add `--scope user` to use it in every project, not only the current folder.
 2. In Claude Code, run `/mcp`, select `seocc` and choose **Authenticate**. A browser opens on SEOcc.
-3. On SEOcc's consent page the user signs in, picks the workspace and the scopes, and clicks **Allow**. Only workspace owners and admins can approve. The access covers every project in that workspace the user can see; to limit Claude to some projects, use a token instead (see the fallback below).
+3. On SEOcc's consent page the user signs in, picks the workspace and the scopes, and clicks **Allow**. Only workspace owners and admins can approve. The access covers every project in that workspace the user can see; to limit Claude to some projects, see "Limiting access to some projects" below.
 
 ## Claude.ai, the Claude desktop chat, or Cowork
 
