@@ -10,4 +10,4 @@ The SEOcc plugin for Claude collects no data.
 - **Retention.** The plugin keeps nothing. Your SEOcc installation keeps your data under your own retention settings.
 - **Not for children.** The plugin is a business tool and isn't directed at anyone under 18.
 
-Questions: sales@seocc.net
+Questions: contact@seocc.net

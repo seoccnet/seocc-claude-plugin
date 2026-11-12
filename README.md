@@ -64,7 +64,7 @@ See [PRIVACY.md](PRIVACY.md). In short: this plugin collects nothing. Your SEO d
 
 ## Support
 
-Open an issue at <https://github.com/seoccnet/seocc-claude-plugin/issues> or e-mail sales@seocc.net.
+Open an issue at <https://github.com/seoccnet/seocc-claude-plugin/issues> or e-mail contact@seocc.net.
 
 ## Licence
 
